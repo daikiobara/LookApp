@@ -15,6 +15,10 @@
 		2A0D99611A6CDBA700BE72A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D99601A6CDBA700BE72A0 /* Images.xcassets */; };
 		2A0D99641A6CDBA700BE72A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D99621A6CDBA700BE72A0 /* LaunchScreen.xib */; };
 		2A0D99701A6CDBA700BE72A0 /* sampleLookAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D996F1A6CDBA700BE72A0 /* sampleLookAppTests.m */; };
+		2A0D997B1A6CDC1600BE72A0 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D997A1A6CDC1600BE72A0 /* CustomTableViewCell.m */; };
+		2A0D997D1A6CFA9600BE72A0 /* speaker.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D997C1A6CFA9600BE72A0 /* speaker.jpeg */; };
+		2A0D997F1A6CFAA100BE72A0 /* Kensaku.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D997E1A6CFAA100BE72A0 /* Kensaku.png */; };
+		2A0D99811A6D34D300BE72A0 /* speaker1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D99801A6D34D300BE72A0 /* speaker1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,11 @@
 		2A0D99691A6CDBA700BE72A0 /* sampleLookAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sampleLookAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A0D996E1A6CDBA700BE72A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A0D996F1A6CDBA700BE72A0 /* sampleLookAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sampleLookAppTests.m; sourceTree = "<group>"; };
+		2A0D99791A6CDC1600BE72A0 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		2A0D997A1A6CDC1600BE72A0 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		2A0D997C1A6CFA9600BE72A0 /* speaker.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = speaker.jpeg; sourceTree = "<group>"; };
+		2A0D997E1A6CFAA100BE72A0 /* Kensaku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Kensaku.png; sourceTree = "<group>"; };
+		2A0D99801A6D34D300BE72A0 /* speaker1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +97,8 @@
 				2A0D995A1A6CDBA700BE72A0 /* ViewController.h */,
 				2A0D995B1A6CDBA700BE72A0 /* ViewController.m */,
 				2A0D995D1A6CDBA700BE72A0 /* Main.storyboard */,
+				2A0D99791A6CDC1600BE72A0 /* CustomTableViewCell.h */,
+				2A0D997A1A6CDC1600BE72A0 /* CustomTableViewCell.m */,
 				2A0D99601A6CDBA700BE72A0 /* Images.xcassets */,
 				2A0D99621A6CDBA700BE72A0 /* LaunchScreen.xib */,
 				2A0D99571A6CDBA700BE72A0 /* sampleLookApp.xcdatamodeld */,
@@ -100,6 +111,9 @@
 			isa = PBXGroup;
 			children = (
 				2A0D99511A6CDBA700BE72A0 /* Info.plist */,
+				2A0D997E1A6CFAA100BE72A0 /* Kensaku.png */,
+				2A0D997C1A6CFA9600BE72A0 /* speaker.jpeg */,
+				2A0D99801A6D34D300BE72A0 /* speaker1.png */,
 				2A0D99521A6CDBA700BE72A0 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -202,9 +216,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A0D99811A6D34D300BE72A0 /* speaker1.png in Resources */,
 				2A0D995F1A6CDBA700BE72A0 /* Main.storyboard in Resources */,
 				2A0D99641A6CDBA700BE72A0 /* LaunchScreen.xib in Resources */,
 				2A0D99611A6CDBA700BE72A0 /* Images.xcassets in Resources */,
+				2A0D997D1A6CFA9600BE72A0 /* speaker.jpeg in Resources */,
+				2A0D997F1A6CFAA100BE72A0 /* Kensaku.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +242,7 @@
 				2A0D99591A6CDBA700BE72A0 /* sampleLookApp.xcdatamodeld in Sources */,
 				2A0D99561A6CDBA700BE72A0 /* AppDelegate.m in Sources */,
 				2A0D995C1A6CDBA700BE72A0 /* ViewController.m in Sources */,
+				2A0D997B1A6CDC1600BE72A0 /* CustomTableViewCell.m in Sources */,
 				2A0D99531A6CDBA700BE72A0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
