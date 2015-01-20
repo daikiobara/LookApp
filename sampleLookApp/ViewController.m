@@ -54,6 +54,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     // カスタムセルを取得
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"
                                                                 forIndexPath:indexPath];
@@ -61,8 +62,7 @@
     
     switch ([indexPath section]) {
         case 0: // match
-            text = _matched;
-            
+            text = [self.matched objectAtIndex:[indexPath row]];
             break;
         case 1:
             text = [self.searchResults objectAtIndex:[indexPath row]];
@@ -82,18 +82,50 @@
 
     
     // データを渡すとすると
-    cell.sampleArray = self.searchResults;
-    
+    //cell.sampleArray = self.searchResults;
     
     // ユーザのイベントへの動作を実装するサンプル
-    [cell.DictionaryImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgTapped)]];
+//    [cell.DictionaryImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(DictionaryImgTapped)]];
+//    
+    [cell.SpeakerImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SpeakerImgTapped)]];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapUnreadImage:)];
+    [cell.DictionaryImg addGestureRecognizer:tap];
+    
+    
+//     NSInteger selectedRow = [self.tableView indexPathForSelectedRow].row;
     
     return cell;
 }
-
-- (void)imgTapped {
-    NSLog(@"タップされたよー");
+-(void)tapUnreadImage:(UIGestureRecognizer *)gesture {
+    
+    // タップした位置（座標点）を取得します。
+    CGPoint pos = [gesture locationInView:_tableView];
+    // 座標点から、tableViewのメソッドを使って、NSIndexPathを取得します。
+    NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:pos];
+    // indexPathを使って、TableView上のタップされた画像を持つCellを取得します。
+    NSLog(@"%d", indexPath.row);
+     NSLog(@"%@",_searchResults[indexPath.row]);
+    
 }
+
+
+//- (void)DictionaryImgTapped{
+////    UITouch *touch = [[event allTouches] anyObject];
+////    CGPoint point = [touch locationInView:tableView];
+////    NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:point];
+////    NSLog(@"row : %d", indexPath.row);
+//    NSLog(@"%@",_searchResults);
+//    //NSLog(@"");
+//    
+//   // NSInteger selectedRow = [self.tableView indexPathForSelectedRow].row;
+//}
+
+- (void)SpeakerImgTapped {
+    NSLog(@"ぐわーーーあああああ");
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -102,14 +134,14 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchtext
 {
-    NSLog(@"search text=%@", searchtext);
+  //NSLog(@"search text=%@", searchtext);
     if ([searchtext length]!=0) {
         // インクリメンタル検索など
         UITextChecker *_checker = [[UITextChecker alloc] init];
         _searchResults = [_checker guessesForWordRange:NSMakeRange(0, [searchtext length])
                                               inString:searchtext
                                               language:@"en_US"];
-        NSLog(@"%@",_searchResults);
+      //  NSLog(@"%@",_searchResults);
         
         BOOL isMatched = [UIReferenceLibraryViewController
                           dictionaryHasDefinitionForTerm:searchtext];

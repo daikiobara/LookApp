@@ -24,19 +24,5 @@
 //    self.CustomLabel.text = str;
 //}
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [[event allTouches] anyObject];
-    if ( touch.view.tag == self.SpeakerImg.tag )
-        NSLog(@"speakerや");
-       
-    else if ( touch.view.tag == self.DictionaryImg.tag )
-        NSLog(@"辞書や");
-}
-
-
-
-
-
 
 @end
