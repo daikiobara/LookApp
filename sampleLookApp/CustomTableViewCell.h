@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *SpeakerImg;
 
-- (void)setData:(NSString *)str;
+//- (void)setData:(NSString *)str;
 
 
 @end

@@ -20,9 +20,9 @@
     // Configure the view for the selected state
 }
 
-- (void)setData:(NSString *)str {
-    self.CustomLabel.text = str;
-}
+//- (void)setData:(NSString *)str {
+//    self.CustomLabel.text = str;
+//}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -32,6 +32,8 @@
     else if ( touch.view.tag == self.DictionaryImg.tag )
         NSLog(@"辞書や");
 }
+
+
 
 
 
