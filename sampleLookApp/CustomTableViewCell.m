@@ -29,6 +29,7 @@
     UITouch *touch = [[event allTouches] anyObject];
     if ( touch.view.tag == self.SpeakerImg.tag )
         NSLog(@"speakerや");
+       
     else if ( touch.view.tag == self.DictionaryImg.tag )
         NSLog(@"辞書や");
 }

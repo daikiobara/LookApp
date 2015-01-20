@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *SpeakerImg;
 
+@property (weak, nonatomic) NSArray *sampleArray;
 //- (void)setData:(NSString *)str;
 
 

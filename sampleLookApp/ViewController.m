@@ -79,10 +79,20 @@
     cell.CustomLabel.text = text;
     cell.SpeakerImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"speaker1" ofType:@"png"]];
     cell.DictionaryImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"search" ofType:@"png"]];
+
+    
+    // データを渡すとすると
+    cell.sampleArray = self.searchResults;
     
     
+    // ユーザのイベントへの動作を実装するサンプル
+    [cell.DictionaryImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgTapped)]];
     
     return cell;
+}
+
+- (void)imgTapped {
+    NSLog(@"タップされたよー");
 }
 
 - (void)didReceiveMemoryWarning {
