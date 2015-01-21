@@ -6,7 +6,7 @@
 //  Created by Daiki  on 2015/01/19.
 //  Copyright (c) 2015年 Daiz. All rights reserved.
 //
-
+#import "AVFoundation/AVFoundation.h"
 #import "ViewController.h"
 #import "CustomTableViewCell.h"
 
@@ -79,11 +79,13 @@
     cell.SpeakerImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"speaker1" ofType:@"png"]];
     cell.DictionaryImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"search" ofType:@"png"]];
     
- 
-    [cell.SpeakerImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SpeakerImgTapped)]];
+// 
+//    [cell.SpeakerImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SpeakerImgTapped)]];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapUnreadImage:)];
+    UITapGestureRecognizer *tapp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappUnreadImage:)];
     [cell.DictionaryImg addGestureRecognizer:tap];
+     [cell.SpeakerImg addGestureRecognizer:tapp];
 
     
 //     NSInteger selectedRow = [self.tableView indexPathForSelectedRow].row;
@@ -117,6 +119,35 @@
     
 }
 
+-(void)tappUnreadImage:(UIGestureRecognizer *)gesture {
+    NSString *word;
+    
+    // タップした位置（座標点）を取得します。
+    CGPoint pos = [gesture locationInView:_tableView];
+    // 座標点から、tableViewのメソッドを使って、NSIndexPathを取得します。
+    NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:pos];
+    // indexPathを使って、TableView上のタップされた画像を持つCellを取得します。
+    
+    switch ([indexPath section]) {
+        case 0: // match
+            NSLog(@"%@",_matched);
+            word = _matched;
+            break;
+        case 1:
+            NSLog(@"%@",_searchResults[indexPath.row]);
+            word = _searchResults[indexPath.row];
+            break;
+        default:
+            NSLog(@"error");
+            break;
+    }
+    AVSpeechSynthesizer* speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
+    NSString* speakingText = word;
+    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:speakingText];
+    [speechSynthesizer speakUtterance:utterance];
+    
+    
+}
 
 
 
@@ -150,6 +181,7 @@
         }
         [self.tableView reloadData];
     }
+    
 }
 
 
