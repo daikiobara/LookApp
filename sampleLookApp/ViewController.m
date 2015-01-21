@@ -58,11 +58,12 @@
     // カスタムセルを取得
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"
                                                                 forIndexPath:indexPath];
+    
     NSString *text;
     
     switch ([indexPath section]) {
         case 0: // match
-            text = [self.matched objectAtIndex:[indexPath row]];
+            text = _matched;
             break;
         case 1:
             text = [self.searchResults objectAtIndex:[indexPath row]];
@@ -72,9 +73,7 @@
             break;
     }
     
-    
     // カスタムセルのラベルに値を設定
-    
     //    [cell setData:self.data[indexPath.row]];
     cell.CustomLabel.text = text;
     cell.SpeakerImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"speaker1" ofType:@"png"]];
@@ -104,9 +103,21 @@
     // 座標点から、tableViewのメソッドを使って、NSIndexPathを取得します。
     NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:pos];
     // indexPathを使って、TableView上のタップされた画像を持つCellを取得します。
-    NSLog(@"%d", indexPath.row);
-     NSLog(@"%@",_searchResults[indexPath.row]);
     
+    switch ([indexPath section]) {
+        case 0: // match
+            NSLog(@"%@",_matched);
+            break;
+        case 1:
+           NSLog(@"%@",_searchResults[indexPath.row]);
+            
+            break;
+        default:
+            NSLog(@"error");
+            break;
+    }
+    
+    // NSLog(@"%@",_searchResults[indexPath.row]);
 }
 
 
@@ -155,19 +166,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 //- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 //{
 //
@@ -189,10 +187,6 @@
 //    }
 //
 //}
-
-
-
-
 
 
 
