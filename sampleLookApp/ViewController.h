@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *SearchBar;
 @property (strong, nonatomic)NSArray *searchResults;
-@property (strong, nonatomic) UITextChecker *checker;
+@property (strong, nonatomic) UITextChecker *textChecker;
 
 @end
 

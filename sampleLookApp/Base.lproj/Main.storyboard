@@ -22,11 +22,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="T62-A6-0dD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="T62-A6-0dD">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="63" id="kcI-ie-jm5" customClass="CustomTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="58" id="kcI-ie-jm5" customClass="CustomTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kcI-ie-jm5" id="O9j-mm-oe4">
@@ -37,6 +37,9 @@
                                                 </imageView>
                                                 <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T10-cb-aox">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="310" y="3" width="68" height="45.5"/>
+                                                    </variation>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQy-W3-X7S">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -46,7 +49,7 @@
                                                         </constraint>
                                                         <constraint firstAttribute="height" constant="21" id="ye9-L7-TUY"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -65,25 +68,25 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="a3p-Qv-Sj8" secondAttribute="bottom" constant="3" id="6ce-kX-SOq">
-                                                    <variation key="widthClass=compact" constant="5.5"/>
+                                                    <variation key="widthClass=compact" constant="1.5"/>
                                                 </constraint>
                                                 <constraint firstAttribute="bottomMargin" secondItem="T10-cb-aox" secondAttribute="bottom" constant="3" id="Bnd-9k-3Ee">
                                                     <variation key="widthClass=compact" constant="5.5"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="SQy-W3-X7S" secondAttribute="centerX" constant="-5" id="H7k-D1-Fit">
-                                                    <variation key="widthClass=compact" constant="0.0"/>
+                                                    <variation key="widthClass=compact" constant="-16"/>
                                                 </constraint>
                                                 <constraint firstItem="T10-cb-aox" firstAttribute="top" secondItem="O9j-mm-oe4" secondAttribute="topMargin" constant="2" id="LHa-uT-hSq">
                                                     <variation key="widthClass=compact" constant="-5"/>
                                                 </constraint>
                                                 <constraint firstItem="SQy-W3-X7S" firstAttribute="leading" secondItem="a3p-Qv-Sj8" secondAttribute="trailing" constant="41" id="PUg-Ee-vLT">
-                                                    <variation key="widthClass=compact" constant="32"/>
+                                                    <variation key="widthClass=compact" constant="42"/>
                                                 </constraint>
                                                 <constraint firstItem="SQy-W3-X7S" firstAttribute="top" secondItem="O9j-mm-oe4" secondAttribute="topMargin" constant="14" id="R97-41-r06">
-                                                    <variation key="widthClass=compact" constant="7"/>
+                                                    <variation key="widthClass=compact" constant="10"/>
                                                 </constraint>
                                                 <constraint firstItem="T10-cb-aox" firstAttribute="leading" secondItem="SQy-W3-X7S" secondAttribute="trailing" constant="8" id="Ur4-VK-fNC">
-                                                    <variation key="widthClass=compact" constant="24"/>
+                                                    <variation key="widthClass=compact" constant="8"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="T10-cb-aox" secondAttribute="centerX" constant="-153" id="dI2-EZ-HNO">
                                                     <variation key="widthClass=compact" constant="-144"/>
@@ -98,7 +101,7 @@
                                                     <variation key="widthClass=compact" constant="-4"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="a3p-Qv-Sj8" secondAttribute="centerX" constant="176" id="yyv-UT-Uhj">
-                                                    <variation key="widthClass=compact" constant="147"/>
+                                                    <variation key="widthClass=compact" constant="144"/>
                                                 </constraint>
                                             </constraints>
                                             <variation key="default">
