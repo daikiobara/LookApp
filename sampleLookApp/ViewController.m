@@ -16,7 +16,6 @@
 @property (strong, nonatomic)NSArray *data;
 @property (strong, nonatomic) NSArray *matched;
 @property (strong, nonatomic) NSArray *suggestions;
-@property (strong, nonatomic) NSArray* history;
 
 
 /* AVSpeechUtteranceのプロパティ*/
@@ -63,28 +62,33 @@ static NSString* HistoryKey = @"History";
 }
 
 
-
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   
-    switch (section) {
-//        case 0: // matched
-//            return self.matched?1:0;
-//            break;
-        case 0: // suggestions
-            return [self.searchResults count];
-            break;
-        default:
-            break;
-    }
+    
+        switch (section) {
+                //        case 0: // matched
+                //            return self.matched?1:0;
+                //            break;
+            case 0: // suggestions
+            if (self.searchResults != nil) {
+                return [self.searchResults count];
+                break;
+            }else{
+                return [self.history count];
+                break;
+                
+            }
+            default:
+                break;
+        }
+    
     return 0;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -95,17 +99,22 @@ static NSString* HistoryKey = @"History";
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"
                                                                 forIndexPath:indexPath];
     NSString *text;
-    switch ([indexPath section]) {
-//        case 0: // match
-//            text = self.matched;
-//            break;
+    
+     switch ([indexPath section]) {
+             
         case 0:
+             if (self.searchResults != nil) {
             text = [self.searchResults objectAtIndex:[indexPath row]];
             break;
+             }else{
+            text = [self.history objectAtIndex:[indexPath row]];
+            break;
+             }
         default:
             text = @"Error";
             break;
-    }
+     }
+    
     
     
     // カスタムセルのラベルに値を設定
@@ -117,6 +126,22 @@ static NSString* HistoryKey = @"History";
     return cell;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.searchResults = nil;
+    [self.tableView reloadData];
+    
+    NSLog(@"こんにゃろーーー");
+    
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchResults = nil;
+    [self.tableView reloadData];
+    [searchBar resignFirstResponder];
+}
+
+
 -(void)tappUnreadImage:(UIGestureRecognizer *)gesture {
     NSString *word;
     
@@ -127,18 +152,19 @@ static NSString* HistoryKey = @"History";
     // indexPathを使って、TableView上のタップされた画像を持つCellを取得します。
     
     switch ([indexPath section]) {
-//        case 0: // match
-//            NSLog(@"%@",self.SearchBar.text);
-//            word = self.matched;
-//            break;
         case 0:
-            NSLog(@"%@",_searchResults[indexPath.row]);
+            if (self.searchResults != nil) {
             word = _searchResults[indexPath.row];
             break;
+            }else{
+            word = self.history[indexPath.row];
+            break;
+            }
         default:
             NSLog(@"error");
             break;
     }
+  
     
     AVSpeechSynthesizer* speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
     NSString* speakingText = word;
@@ -209,13 +235,35 @@ static NSString* HistoryKey = @"History";
 //            word = self.matched;
 //            break;
         case 0:
+            if (self.searchResults != nil) {
             word = _searchResults[indexPath.row];
             break;
+            }else{
+            word = _history[indexPath.row];
+                
+            }
         default:
             NSLog(@"error");
             break;
     }
     UIReferenceLibraryViewController *dictionary = [[UIReferenceLibraryViewController alloc] initWithTerm:word];
+    
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *array = [NSMutableArray array];
+    array = [[defaults arrayForKey:@"a"] mutableCopy];
+    
+    if(array == nil) {
+        array = [NSMutableArray new];
+    }
+    [array addObject: word];
+    
+    [defaults setObject:array forKey:@"a"];
+    
+    NSArray *aaa= [defaults arrayForKey:@"a"];
+    NSArray *ccc = [[aaa reverseObjectEnumerator] allObjects];
+    self.history = [[NSMutableOrderedSet alloc] initWithArray:ccc];
+
     [self presentViewController:dictionary animated:YES completion:nil];
 }
 
