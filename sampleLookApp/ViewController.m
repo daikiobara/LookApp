@@ -42,6 +42,8 @@ static NSString* HistoryKey = @"History";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.SearchBar.autocorrectionType = UITextAutocorrectionTypeYes;
+    self.SearchBar.spellCheckingType = UITextSpellCheckingTypeYes;
     self.SearchBar.delegate = self;
      [self ManageHistoryByUserDefault];
     
