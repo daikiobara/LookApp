@@ -22,7 +22,6 @@
 @property (strong, nonatomic) NSString *language;
 
 
-
 /* AVSpeechUtteranceのプロパティ*/
 //@property(nonatomic, retain) AVSpeechSynthesisVoice *voice;
 @property(nonatomic, readonly) NSString *speechString; //再生テキスト
@@ -32,7 +31,6 @@
 @property(weak, nonatomic)NSString *ABC;
 
 -(void)ManageHistoryByUserDefault;
-
 
 @end
 
@@ -187,7 +185,6 @@ static NSString* HistoryKey = @"History";
             NSLog(@"error");
             break;
     }
-
     
     AVSpeechSynthesizer* speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
     NSString* speakingText = word;
@@ -287,7 +284,6 @@ static NSString* HistoryKey = @"History";
     NSLog(@"このやろー");
     
     NSLog(@"%@", historyList);
-    
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *array = [NSMutableArray array];
