@@ -17,7 +17,8 @@
 @property (strong, nonatomic)NSArray *searchResults;
 @property (strong, nonatomic) UITextChecker *textChecker;
 @property (strong, nonatomic) NSMutableOrderedSet *history;
-@property (weak, nonatomic) IBOutlet UIImageView *Setting;
+- (IBAction)Rubbish:(id)sender;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end
 

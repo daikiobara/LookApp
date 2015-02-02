@@ -15,11 +15,12 @@
 		2A0D99641A6CDBA700BE72A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D99621A6CDBA700BE72A0 /* LaunchScreen.xib */; };
 		2A0D99701A6CDBA700BE72A0 /* sampleLookAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D996F1A6CDBA700BE72A0 /* sampleLookAppTests.m */; };
 		2A0D997B1A6CDC1600BE72A0 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D997A1A6CDC1600BE72A0 /* CustomTableViewCell.m */; };
-		2A0D99811A6D34D300BE72A0 /* speaker1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D99801A6D34D300BE72A0 /* speaker1.png */; };
+		2A0D99811A6D34D300BE72A0 /* Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D99801A6D34D300BE72A0 /* Speaker.png */; };
 		2A0D99851A6DEF6400BE72A0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99841A6DEF6400BE72A0 /* ViewController.m */; };
 		2A0D99C61A6F809000BE72A0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A0D99C51A6F809000BE72A0 /* AVFoundation.framework */; };
 		2A748EF91A7908A1000D7405 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A748EF81A7908A1000D7405 /* SettingViewController.m */; };
 		2AE3613C1A7F229800798EE5 /* Setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE3613B1A7F229800798EE5 /* Setting.png */; };
+		2AE3613E1A7FBD6600798EE5 /* Rubbish.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE3613D1A7FBD6600798EE5 /* Rubbish.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,12 +49,13 @@
 		2A0D996F1A6CDBA700BE72A0 /* sampleLookAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sampleLookAppTests.m; sourceTree = "<group>"; };
 		2A0D99791A6CDC1600BE72A0 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		2A0D997A1A6CDC1600BE72A0 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
-		2A0D99801A6D34D300BE72A0 /* speaker1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker1.png; sourceTree = "<group>"; };
+		2A0D99801A6D34D300BE72A0 /* Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Speaker.png; sourceTree = "<group>"; };
 		2A0D99841A6DEF6400BE72A0 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2A0D99C51A6F809000BE72A0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2A748EF71A7908A1000D7405 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		2A748EF81A7908A1000D7405 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		2AE3613B1A7F229800798EE5 /* Setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Setting.png; sourceTree = "<group>"; };
+		2AE3613D1A7FBD6600798EE5 /* Rubbish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rubbish.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +121,8 @@
 			children = (
 				2A0D99511A6CDBA700BE72A0 /* Info.plist */,
 				2AE3613B1A7F229800798EE5 /* Setting.png */,
-				2A0D99801A6D34D300BE72A0 /* speaker1.png */,
+				2A0D99801A6D34D300BE72A0 /* Speaker.png */,
+				2AE3613D1A7FBD6600798EE5 /* Rubbish.png */,
 				2A0D99521A6CDBA700BE72A0 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -223,7 +226,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A0D99811A6D34D300BE72A0 /* speaker1.png in Resources */,
+				2A0D99811A6D34D300BE72A0 /* Speaker.png in Resources */,
+				2AE3613E1A7FBD6600798EE5 /* Rubbish.png in Resources */,
 				2AE3613C1A7F229800798EE5 /* Setting.png in Resources */,
 				2A0D995F1A6CDBA700BE72A0 /* Main.storyboard in Resources */,
 				2A0D99641A6CDBA700BE72A0 /* LaunchScreen.xib in Resources */,

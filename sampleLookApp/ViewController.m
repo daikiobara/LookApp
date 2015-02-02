@@ -51,6 +51,23 @@ static NSString* HistoryKey = @"History";
     
 }
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
+    
+    self.rate = [[settingDefaults stringForKey:@"rate"] integerValue];
+    self.pitchMultiplier = [[settingDefaults stringForKey:@"pitch"] integerValue];
+    
+    NSLog(@"%f",_rate);
+    // NSLog(@"%f",_pitchMultiplier);
+    
+    self.searchResults = nil;
+    self.matched = nil;
+    //[self.tableView reloadData];
+}
+
 -(void)ManageHistoryByUserDefault
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -130,12 +147,6 @@ static NSString* HistoryKey = @"History";
     return cell;
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    self.searchResults = nil;
-    self.matched = nil;
-    [self.tableView reloadData];
-}
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     self.searchResults = nil;
@@ -280,8 +291,6 @@ static NSString* HistoryKey = @"History";
     
 }
 
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *word;
@@ -398,17 +407,14 @@ static NSString* HistoryKey = @"History";
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+- (IBAction)Rubbish:(id)sender {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // 削除
+    [defaults removeObjectForKey:@"history"];
+    [defaults synchronize];
+    [self.tableView reloadData];
+    
+}
 @end

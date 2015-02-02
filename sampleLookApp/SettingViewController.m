@@ -30,11 +30,22 @@
     self.pitchSlider.maximumValue = 2.0;
     self.pitchSlider.value = 1.0;
     
+    [_rateSlider addTarget:self action:@selector(didValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_pitchSlider addTarget:self action:@selector(didValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+- (void)didValueChanged:( UISlider *)slider
+{
+    NSLog(@"%f", _rateSlider.value);
+    NSLog(@"%f", _pitchSlider.value);
+    
 }
 
 /*
@@ -47,4 +58,11 @@
 }
 */
 
+- (IBAction)Return:(id)sender {
+    NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
+    [settingDefaults setInteger:_rateSlider.value forKey:@"rate"];
+    [settingDefaults setInteger:_pitchSlider.value forKey:@"pitch"];
+    [settingDefaults synchronize];
+    
+}
 @end
