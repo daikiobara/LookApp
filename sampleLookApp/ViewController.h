@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *SearchBar;
 @property (strong, nonatomic)NSArray *searchResults;
 @property (strong, nonatomic) UITextChecker *textChecker;
-@property (strong, nonatomic) NSOrderedSet *history;
+@property (strong, nonatomic) NSMutableOrderedSet *history;
 @property (weak, nonatomic) IBOutlet UIImageView *Setting;
 
 @end

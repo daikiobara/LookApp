@@ -55,16 +55,16 @@ static NSString* HistoryKey = @"History";
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *array = [NSMutableArray array];
-    array = [[defaults arrayForKey:@"a"] mutableCopy];
+    array = [[defaults arrayForKey:@"history"] mutableCopy];
     
     if(array == nil) {
         array = [NSMutableArray new];
     }
     
-    [defaults setObject:array forKey:@"a"];
-    NSArray *aaa= [defaults arrayForKey:@"a"];
-    NSArray *ccc = [[aaa reverseObjectEnumerator] allObjects];
-    self.history = [[NSMutableOrderedSet alloc] initWithArray:ccc];
+    [defaults setObject:array forKey:@"history"];
+    NSArray *history= [defaults arrayForKey:@"history"];
+    NSArray *reversedHistory = [[history reverseObjectEnumerator] allObjects];
+    self.history = [[NSMutableOrderedSet alloc] initWithArray:reversedHistory];
     
 }
 
@@ -111,12 +111,10 @@ static NSString* HistoryKey = @"History";
              if (self.searchResults != nil) {
                  text = [self.searchResults objectAtIndex:[indexPath row]];
                  break;
+
              }else{
-                 NSLog(@"%@",[self.history objectAtIndex:[indexPath row]]);
                  NSDictionary *htry = [self.history objectAtIndex:[indexPath row]];
-                 NSLog(@"%@",htry);
                  text = [htry objectForKey:@"text"];
-                 NSLog(@"%@",text);
                  break;
              }
         default:
@@ -164,11 +162,8 @@ static NSString* HistoryKey = @"History";
                 word = _searchResults[indexPath.row];
                 break;
             }else{
-                NSLog(@"%@",[self.history objectAtIndex:[indexPath row]]);
                 NSDictionary *htry = [self.history objectAtIndex:[indexPath row]];
-                NSLog(@"%@",htry);
                 word= [htry objectForKey:@"text"];
-                NSLog(@"%@",word);
                 self.language = [htry objectForKey:@"lang"];
                 break;
             }
@@ -269,7 +264,6 @@ static NSString* HistoryKey = @"History";
 //                dispatch_async(mainQueue, ^{
                     self.searchResults = [[self.prepareArray reverseObjectEnumerator] allObjects];
                     NSString *primaryLanguage = textInput.primaryLanguage;
-                    NSLog(@"Current text input is: %@", primaryLanguage);
                     self.language = primaryLanguage;
                 
                     self.matched = searchText;
@@ -286,26 +280,28 @@ static NSString* HistoryKey = @"History";
     
 }
 
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *word;
-//    switch ([indexPath section]) {
-//        case 0: // match
-//            word = self.matched;
-//            break;
-//        case 1:
-//            if (self.searchResults != nil) {
-//                word = _searchResults[indexPath.row];
-//                break;
-//            }else{
-//                NSDictionary *htry = [self.history objectAtIndex:[indexPath row]];
-//                word = [htry objectForKey:@"text"];
-//                self.language = [htry objectForKey:@"lang"];
-//            }
-//        default:
-//            NSLog(@"errorf");
-//            break;
-//    }
+    //    switch ([indexPath section]) {
+    //        case 0: // match
+    //            word = self.matched;
+    //            break;
+    //        case 1:
+    //            if (self.searchResults != nil) {
+    //                word = _searchResults[indexPath.row];
+    //                break;
+    //            }else{
+    //                NSDictionary *htry = [self.history objectAtIndex:[indexPath row]];
+    //                word = [htry objectForKey:@"text"];
+    //                self.language = [htry objectForKey:@"lang"];
+    //            }
+    //        default:
+    //            NSLog(@"errorf");
+    //            break;
+    //    }
     
     switch ([indexPath section]) {
         case 0: // match
@@ -325,35 +321,82 @@ static NSString* HistoryKey = @"History";
             break;
     }
     
-    UIReferenceLibraryViewController *dictionary = [[UIReferenceLibraryViewController alloc] initWithTerm:word];
-    self.historyList = [NSDictionary dictionaryWithObjectsAndKeys:word,@"text",_language,@"lang", nil];
+    //    dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    //    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    //     dispatch_async(globalQueue, ^{
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *array = [NSMutableArray array];
-    array = [[defaults arrayForKey:@"a"] mutableCopy];
-    
-    if(array == nil) {
-        array = [NSMutableArray new];
+    BOOL hasDefinition = [UIReferenceLibraryViewController
+                          dictionaryHasDefinitionForTerm:word];
+    if (hasDefinition) {
+        self.historyList = [NSDictionary dictionaryWithObjectsAndKeys:word,@"text",_language,@"lang", nil];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *array = [NSMutableArray array];
+        array = [[defaults arrayForKey:@"history"] mutableCopy];
+        
+        if(array == nil) {
+            array = [NSMutableArray new];
+        }
+        
+        [array addObject: self.historyList];
+        [defaults setObject:array forKey:@"history"];
+        [defaults synchronize];
+        
+        NSArray *aaa = [defaults arrayForKey:@"history"];
+        NSArray *ccc = [[aaa reverseObjectEnumerator] allObjects];
+        self.history = [[NSMutableOrderedSet alloc] initWithArray:ccc];
+        
     }
+    //         dispatch_async(mainQueue, ^{
     
-    [array addObject: self.historyList];
-    [defaults setObject:array forKey:@"a"];
-    [defaults synchronize];
-    
-    NSArray *aaa= [defaults arrayForKey:@"a"];
-    NSArray *ccc = [[aaa reverseObjectEnumerator] allObjects];
-    self.history = [[NSMutableOrderedSet alloc] initWithArray:ccc];
-
+    UIReferenceLibraryViewController *dictionary = [[UIReferenceLibraryViewController alloc] initWithTerm:word];
+    //  self.historyList = [NSDictionary dictionaryWithObjectsAndKeys:word,@"text",_language,@"lang", nil];
     [self presentViewController:dictionary animated:YES completion:nil];
+    //             });
+    //         });
+    //
+    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //    NSMutableArray *array = [NSMutableArray array];
+    //    array = [[defaults arrayForKey:@"a"] mutableCopy];
+    //
+    //    if(array == nil) {
+    //        array = [NSMutableArray new];
+    //    }
+    //
+    //    [array addObject: self.historyList];
+    //    [defaults setObject:array forKey:@"a"];
+    //    [defaults synchronize];
+    //
+    //    NSArray *aaa= [defaults arrayForKey:@"a"];
+    //    NSArray *ccc = [[aaa reverseObjectEnumerator] allObjects];
+    //    self.history = [[NSMutableOrderedSet alloc] initWithArray:ccc];
+    
+    //    [self presentViewController:dictionary animated:YES completion:nil];
 }
+
 
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *history = [NSMutableArray array];
+         history = [[defaults arrayForKey:@"history"] mutableCopy];
+        
+        NSMutableArray *reverseHistory = [[history reverseObjectEnumerator] allObjects];
+        
+        [reverseHistory removeObjectAtIndex:indexPath.row];
+        NSMutableArray *array =[[reverseHistory reverseObjectEnumerator] allObjects];
+        
+        [defaults setObject:array forKey:@"history"];
+        [defaults synchronize];
+        
+        [self.history removeObjectAtIndex:indexPath.row];
+        // 削除ボタンが押された行のデータを配列から削除します。
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
-
-
 
 
 

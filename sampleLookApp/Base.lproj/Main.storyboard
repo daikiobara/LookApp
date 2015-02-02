@@ -78,10 +78,10 @@
                                                     <exclude reference="49y-6j-eUc"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="7xd-h8-2S2"/>
-                                                    <exclude reference="dz5-8A-9GU"/>
                                                     <exclude reference="8JK-i5-3L8"/>
                                                     <exclude reference="XF5-SA-34G"/>
+                                                    <exclude reference="7xd-h8-2S2"/>
+                                                    <exclude reference="dz5-8A-9GU"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -90,10 +90,10 @@
                                                     <include reference="49y-6j-eUc"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="7xd-h8-2S2"/>
-                                                    <include reference="dz5-8A-9GU"/>
                                                     <include reference="8JK-i5-3L8"/>
                                                     <include reference="XF5-SA-34G"/>
+                                                    <include reference="7xd-h8-2S2"/>
+                                                    <include reference="dz5-8A-9GU"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -105,9 +105,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="108" width="400" height="536"/>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="6Lb-me-UEH"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="H8g-JX-0Mz"/>
@@ -190,6 +187,7 @@
                         <viewControllerLayoutGuide type="bottom" id="abZ-54-lt6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ics-jY-UJo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VZf-LD-wiR">
@@ -237,8 +235,7 @@
                                         <exclude reference="scR-fj-AQr"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="32" y="60" width="336" height="33"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="Agv-oj-SmH"/>
                                         <include reference="scR-fj-AQr"/>

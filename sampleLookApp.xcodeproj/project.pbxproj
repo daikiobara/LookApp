@@ -19,7 +19,7 @@
 		2A0D99851A6DEF6400BE72A0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99841A6DEF6400BE72A0 /* ViewController.m */; };
 		2A0D99C61A6F809000BE72A0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A0D99C51A6F809000BE72A0 /* AVFoundation.framework */; };
 		2A748EF91A7908A1000D7405 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A748EF81A7908A1000D7405 /* SettingViewController.m */; };
-		2A748EFB1A7916D5000D7405 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A748EFA1A7916D5000D7405 /* setting.png */; };
+		2AE3613C1A7F229800798EE5 /* Setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE3613B1A7F229800798EE5 /* Setting.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +53,7 @@
 		2A0D99C51A6F809000BE72A0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2A748EF71A7908A1000D7405 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		2A748EF81A7908A1000D7405 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		2A748EFA1A7916D5000D7405 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = setting.png; path = ../../../../../Downloads/elegant_font/images/PNG/setting.png; sourceTree = "<group>"; };
+		2AE3613B1A7F229800798EE5 /* Setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Setting.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				2A0D99511A6CDBA700BE72A0 /* Info.plist */,
-				2A748EFA1A7916D5000D7405 /* setting.png */,
+				2AE3613B1A7F229800798EE5 /* Setting.png */,
 				2A0D99801A6D34D300BE72A0 /* speaker1.png */,
 				2A0D99521A6CDBA700BE72A0 /* main.m */,
 			);
@@ -224,7 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A0D99811A6D34D300BE72A0 /* speaker1.png in Resources */,
-				2A748EFB1A7916D5000D7405 /* setting.png in Resources */,
+				2AE3613C1A7F229800798EE5 /* Setting.png in Resources */,
 				2A0D995F1A6CDBA700BE72A0 /* Main.storyboard in Resources */,
 				2A0D99641A6CDBA700BE72A0 /* LaunchScreen.xib in Resources */,
 				2A0D99611A6CDBA700BE72A0 /* Images.xcassets in Resources */,
