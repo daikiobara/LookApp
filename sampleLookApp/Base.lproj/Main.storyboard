@@ -18,10 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="qw1-Oa-DaG">
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qw1-Oa-DaG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <scopeButtonTitles>
                                     <string>Title</string>
                                     <string>Title</string>
@@ -121,7 +121,7 @@
                                     </barButtonItem>
                                     <barButtonItem enabled="NO" width="259" id="KJs-a9-jS9"/>
                                     <barButtonItem image="Setting.png" id="dCp-gh-lTU">
-                                        <color key="tintColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="Li3-jY-8LG" kind="modal" id="Jra-I4-0Mk"/>
                                         </connections>
@@ -255,7 +255,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <barButtonItem image="Main.png" id="07V-7W-bGc">
-                                        <color key="tintColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="Return:" destination="Li3-jY-8LG" id="wAM-r0-bQI"/>
                                             <segue destination="vXZ-lx-hvc" kind="modal" id="Vd4-nF-WVe"/>
@@ -264,6 +264,13 @@
                                 </items>
                                 <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VZf-LD-wiR">
+                                <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                                <color key="tintColor" red="0.2977066297" green="0.26913579789999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="129" y="121" width="143" height="31"/>
+                                </variation>
+                            </slider>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pru-i8-5LO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -273,24 +280,23 @@
                                 <items>
                                     <navigationItem title="Setting" id="1oz-hP-fd1"/>
                                 </items>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="20" width="400" height="44"/>
-                                </variation>
                             </navigationBar>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VZf-LD-wiR">
-                                <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
-                                <color key="tintColor" red="0.2977066297" green="0.26913579789999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="129" y="121" width="143" height="31"/>
-                                </variation>
-                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pru-i8-5LO" firstAttribute="trailing" secondItem="ics-jY-UJo" secondAttribute="trailingMargin" id="JR5-81-LUs">
+                                <variation key="widthClass=compact" constant="16"/>
+                            </constraint>
                             <constraint firstItem="abZ-54-lt6" firstAttribute="top" secondItem="kix-MS-kNd" secondAttribute="bottom" constant="43" id="LX3-qr-Ukn">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
+                            <constraint firstItem="pru-i8-5LO" firstAttribute="top" secondItem="SIL-os-5Ix" secondAttribute="bottom" constant="24" id="SIK-uw-zDm">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="kix-MS-kNd" secondAttribute="trailing" constant="16" id="SMV-zH-HxH">
+                                <variation key="widthClass=compact" constant="-16"/>
+                            </constraint>
+                            <constraint firstItem="pru-i8-5LO" firstAttribute="leading" secondItem="ics-jY-UJo" secondAttribute="leadingMargin" id="rir-dc-3ec">
                                 <variation key="widthClass=compact" constant="-16"/>
                             </constraint>
                             <constraint firstItem="kix-MS-kNd" firstAttribute="leading" secondItem="ics-jY-UJo" secondAttribute="leadingMargin" constant="16" id="tL8-mw-t21">
@@ -306,14 +312,17 @@
                                 <exclude reference="MC8-hU-IUY"/>
                                 <exclude reference="OQE-o1-CSu"/>
                                 <exclude reference="kix-MS-kNd"/>
-                                <exclude reference="pru-i8-5LO"/>
                                 <exclude reference="VZf-LD-wiR"/>
+                                <exclude reference="pru-i8-5LO"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="LX3-qr-Ukn"/>
+                                <exclude reference="JR5-81-LUs"/>
+                                <exclude reference="SIK-uw-zDm"/>
+                                <exclude reference="rir-dc-3ec"/>
                                 <exclude reference="SMV-zH-HxH"/>
                                 <exclude reference="tL8-mw-t21"/>
                                 <exclude reference="wRX-40-qKW"/>
+                                <exclude reference="LX3-qr-Ukn"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -322,14 +331,17 @@
                                 <include reference="MC8-hU-IUY"/>
                                 <include reference="OQE-o1-CSu"/>
                                 <include reference="kix-MS-kNd"/>
-                                <include reference="pru-i8-5LO"/>
                                 <include reference="VZf-LD-wiR"/>
+                                <include reference="pru-i8-5LO"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="LX3-qr-Ukn"/>
+                                <include reference="JR5-81-LUs"/>
+                                <include reference="SIK-uw-zDm"/>
+                                <include reference="rir-dc-3ec"/>
                                 <include reference="SMV-zH-HxH"/>
                                 <include reference="tL8-mw-t21"/>
                                 <include reference="wRX-40-qKW"/>
+                                <include reference="LX3-qr-Ukn"/>
                             </mask>
                         </variation>
                     </view>

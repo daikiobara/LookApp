@@ -23,7 +23,6 @@
 @property (strong, nonatomic) NSDictionary *historyList;
 
 
-
 /* AVSpeechUtteranceのプロパティ*/
 //@property(nonatomic, retain) AVSpeechSynthesisVoice *voice;
 @property(nonatomic, readonly) NSString *speechString; //再生テキスト
@@ -31,51 +30,47 @@
 @property(nonatomic) float pitchMultiplier;  // 声のピッチ [0.5 - 2] Default = 1
 @property(nonatomic) float volume;
 @property(weak, nonatomic)NSString *ABC;
+@property(strong, nonatomic) UIActivityIndicatorView *indicator;
+
 
 -(void)ManageHistoryByUserDefault;
 
 @end
 
 @implementation ViewController
+{
+    
+
+}
 
 
 static NSString* HistoryKey = @"History";
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    CGRect frame = [[UIScreen mainScreen] bounds];
-    CGFloat windowWitdh = frame.size.width;
-    if (windowWitdh <= 320) {
-        self.spacerItem.width = 200.0f;
-    } else {
-        self.spacerItem.width = 250.0f;
-    }
-    
     self.SearchBar.autocorrectionType = UITextAutocorrectionTypeYes;
     self.SearchBar.spellCheckingType = UITextSpellCheckingTypeYes;
     self.SearchBar.delegate = self;
     [self ManageHistoryByUserDefault];
     
+    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    float w = _indicator.frame.size.width;
+    float h = _indicator.frame.size.height;
+    float x = self.view.frame.size.width/2 - w/2;
+    float y = self.view.frame.size.height/2 - h/2;
+    _indicator.frame = CGRectMake(x, y, w, h);
+    _indicator.color = [UIColor redColor];
+    
 }
-
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
     NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
-    
     self.rate = [settingDefaults floatForKey:@"rate"];
     self.pitchMultiplier = [settingDefaults floatForKey:@"pitch"];
-    
-    NSLog(@"%f",_rate);
-    // NSLog(@"%f",_pitchMultiplier);
-    
     self.searchResults = nil;
     self.matched = nil;
-    //[self.tableView reloadData];
 }
 
 -(void)ManageHistoryByUserDefault
@@ -157,8 +152,9 @@ static NSString* HistoryKey = @"History";
     return cell;
 }
 
-
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    searchBar = nil;
+    self.matched = nil;
     self.searchResults = nil;
     [self.tableView reloadData];
     [searchBar resignFirstResponder];
@@ -193,7 +189,6 @@ static NSString* HistoryKey = @"History";
             break;
     }
     
-   // NSInteger *rate = [SettingViewController rateSlider];
     AVSpeechSynthesizer* speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
     NSString* speakingText = word;
     AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:speakingText];
@@ -219,13 +214,7 @@ static NSString* HistoryKey = @"History";
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-//    
-//    dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    dispatch_queue_t mainQueue = dispatch_get_main_queue();
-    
     if( !_language ) _language = @"en_US";
-        //並列処理
-//        dispatch_async(globalQueue, ^{
     
             if ([searchText length]!=0) {
                 // インクリメンタル検索など
@@ -239,52 +228,27 @@ static NSString* HistoryKey = @"History";
             
                 self.searchResults = [[self.prepareArray reverseObjectEnumerator] allObjects];
             
-//                BOOL isMatched = [UIReferenceLibraryViewController
-//                              dictionaryHasDefinitionForTerm:searchText];
-            
                 UITextInputMode *textInput = [UITextInputMode currentInputMode];
-                NSLog(@"%@",self.language);
             
-//                dispatch_async(mainQueue, ^{
-                    self.searchResults = [[self.prepareArray reverseObjectEnumerator] allObjects];
-                    NSString *primaryLanguage = textInput.primaryLanguage;
-                    self.language = primaryLanguage;
+                self.searchResults = [[self.prepareArray reverseObjectEnumerator] allObjects];
+                NSString *primaryLanguage = textInput.primaryLanguage;
+                self.language = primaryLanguage;
                 
-                    self.matched = searchText;
+                self.matched = searchText;
     
-//                    if (isMatched) {
-//                        self.matched = searchText;
-//                    } else {
-//                        self.matched = nil;
-//                    }
-                    [self.tableView reloadData];
-//                });
+                [self.tableView reloadData];
             }
-//        });
     
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *word;
-    //    switch ([indexPath section]) {
-    //        case 0: // match
-    //            word = self.matched;
-    //            break;
-    //        case 1:
-    //            if (self.searchResults != nil) {
-    //                word = _searchResults[indexPath.row];
-    //                break;
-    //            }else{
-    //                NSDictionary *htry = [self.history objectAtIndex:[indexPath row]];
-    //                word = [htry objectForKey:@"text"];
-    //                self.language = [htry objectForKey:@"lang"];
-    //            }
-    //        default:
-    //            NSLog(@"errorf");
-    //            break;
-    //    }
+    [self.view addSubview:_indicator];
+    [_indicator startAnimating];
+    _indicator.hidesWhenStopped = YES;
     
+ NSString *word;
     switch ([indexPath section]) {
         case 0: // match
             word = self.matched;
@@ -303,9 +267,6 @@ static NSString* HistoryKey = @"History";
             break;
     }
     
-    //    dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    //    dispatch_queue_t mainQueue = dispatch_get_main_queue();
-    //     dispatch_async(globalQueue, ^{
     
     BOOL hasDefinition = [UIReferenceLibraryViewController
                           dictionaryHasDefinitionForTerm:word];
@@ -329,31 +290,11 @@ static NSString* HistoryKey = @"History";
         self.history = [[NSMutableOrderedSet alloc] initWithArray:ccc];
         
     }
-    //         dispatch_async(mainQueue, ^{
     
     UIReferenceLibraryViewController *dictionary = [[UIReferenceLibraryViewController alloc] initWithTerm:word];
-    //  self.historyList = [NSDictionary dictionaryWithObjectsAndKeys:word,@"text",_language,@"lang", nil];
-    [self presentViewController:dictionary animated:YES completion:nil];
-    //             });
-    //         });
-    //
-    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //    NSMutableArray *array = [NSMutableArray array];
-    //    array = [[defaults arrayForKey:@"a"] mutableCopy];
-    //
-    //    if(array == nil) {
-    //        array = [NSMutableArray new];
-    //    }
-    //
-    //    [array addObject: self.historyList];
-    //    [defaults setObject:array forKey:@"a"];
-    //    [defaults synchronize];
-    //
-    //    NSArray *aaa= [defaults arrayForKey:@"a"];
-    //    NSArray *ccc = [[aaa reverseObjectEnumerator] allObjects];
-    //    self.history = [[NSMutableOrderedSet alloc] initWithArray:ccc];
+    [self presentViewController:dictionary animated:YES completion:^(void){[_indicator stopAnimating];}];
     
-    //    [self presentViewController:dictionary animated:YES completion:nil];
+  
 }
 
 
@@ -382,11 +323,11 @@ static NSString* HistoryKey = @"History";
 
 - (IBAction)Rubbish:(id)sender {
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    // 削除
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"history"];
     [defaults synchronize];
+    [self.history removeAllObjects];
     [self.tableView reloadData];
     
 }

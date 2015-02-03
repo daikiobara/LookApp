@@ -10,7 +10,6 @@
 
 @interface SettingViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
 
-
 @property (strong, nonatomic) IBOutlet UISlider *rateSlider;
 @property (strong, nonatomic) IBOutlet UISlider *pitchSlider;
 - (IBAction)Return:(id)sender;
