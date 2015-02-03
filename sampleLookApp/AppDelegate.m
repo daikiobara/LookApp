@@ -16,6 +16,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+NSLog(@"-----------");
+    NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
+ 
+    //    self.pitchMultiplier = [[settingDefaults stringForKey:@"pitch"] integerValue];
+    
+    if (settingDefaults == nil) {
+        [settingDefaults setFloat:0.2f forKey:@"rate"];
+        [settingDefaults setFloat:1.0f forKey:@"pitch"];
+        [settingDefaults synchronize];
+    }
+    
     // Override point for customization after application launch.
     return YES;
 }

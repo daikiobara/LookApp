@@ -119,6 +119,7 @@
                                             <action selector="Rubbish:" destination="vXZ-lx-hvc" id="dCh-cX-91u"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem enabled="NO" width="259" id="KJs-a9-jS9"/>
                                     <barButtonItem image="Setting.png" id="dCp-gh-lTU">
                                         <color key="tintColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -134,17 +135,11 @@
                             <constraint firstItem="T62-A6-0dD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="13" id="2WN-Pe-z1H">
                                 <variation key="widthClass=compact" constant="-16"/>
                             </constraint>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="T62-A6-0dD" secondAttribute="bottom" constant="55" id="4zG-TT-OzL">
-                                <variation key="widthClass=compact" constant="84"/>
-                            </constraint>
                             <constraint firstItem="qw1-Oa-DaG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-5" id="Brv-LX-fnq">
                                 <variation key="widthClass=compact" constant="-16"/>
                             </constraint>
                             <constraint firstItem="qw1-Oa-DaG" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-8" id="Jdg-s3-hbV">
                                 <variation key="widthClass=compact" constant="0.0"/>
-                            </constraint>
-                            <constraint firstItem="TrB-rc-CgD" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="536" id="ODi-nI-JHA">
-                                <variation key="widthClass=compact" constant="536"/>
                             </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="T62-A6-0dD" secondAttribute="trailing" constant="11" id="UQx-kr-lzx">
                                 <variation key="widthClass=compact" constant="-16"/>
@@ -152,6 +147,7 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="TrB-rc-CgD" secondAttribute="bottom" constant="29" id="XMB-Fb-eaK">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
+                            <constraint firstItem="TrB-rc-CgD" firstAttribute="top" secondItem="T62-A6-0dD" secondAttribute="bottom" id="Yh3-CE-Ja0"/>
                             <constraint firstItem="TrB-rc-CgD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="34" id="eI9-Bb-uoQ">
                                 <variation key="widthClass=compact" constant="-16"/>
                             </constraint>
@@ -178,10 +174,9 @@
                                 <exclude reference="2WN-Pe-z1H"/>
                                 <exclude reference="UQx-kr-lzx"/>
                                 <exclude reference="lsf-YN-F8G"/>
-                                <exclude reference="ODi-nI-JHA"/>
+                                <exclude reference="Yh3-CE-Ja0"/>
                                 <exclude reference="eI9-Bb-uoQ"/>
                                 <exclude reference="xwb-Cs-Kco"/>
-                                <exclude reference="4zG-TT-OzL"/>
                                 <exclude reference="XMB-Fb-eaK"/>
                             </mask>
                         </variation>
@@ -198,10 +193,9 @@
                                 <include reference="2WN-Pe-z1H"/>
                                 <include reference="UQx-kr-lzx"/>
                                 <include reference="lsf-YN-F8G"/>
-                                <include reference="ODi-nI-JHA"/>
+                                <include reference="Yh3-CE-Ja0"/>
                                 <include reference="eI9-Bb-uoQ"/>
                                 <include reference="xwb-Cs-Kco"/>
-                                <include reference="4zG-TT-OzL"/>
                                 <include reference="XMB-Fb-eaK"/>
                             </mask>
                         </variation>
@@ -209,13 +203,16 @@
                     <navigationItem key="navigationItem" id="pRk-7u-Qwx"/>
                     <connections>
                         <outlet property="SearchBar" destination="qw1-Oa-DaG" id="wD8-e8-iSU"/>
+                        <outlet property="settingBtnItem" destination="dCp-gh-lTU" id="0xC-Sz-VoG"/>
+                        <outlet property="spacerItem" destination="KJs-a9-jS9" id="9ih-QY-DcC"/>
                         <outlet property="tableView" destination="T62-A6-0dD" id="Mxk-4u-WMr"/>
                         <outlet property="toolbar" destination="TrB-rc-CgD" id="Qe6-Q8-VGp"/>
+                        <outlet property="trashBoxItem" destination="D5X-Wb-Z2G" id="aNh-ur-D6s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="379.5" y="330"/>
+            <point key="canvasLocation" x="240" y="315"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="Frf-dj-Q9T">
@@ -231,6 +228,7 @@
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lwc-qd-5hW">
                                 <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                                <color key="tintColor" red="0.2977066297" green="0.26913579789999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="129" y="194" width="143" height="31"/>
                                 </variation>
@@ -256,7 +254,8 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kix-MS-kNd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <barButtonItem title="Back" id="07V-7W-bGc">
+                                    <barButtonItem image="Main.png" id="07V-7W-bGc">
+                                        <color key="tintColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="Return:" destination="Li3-jY-8LG" id="wAM-r0-bQI"/>
                                             <segue destination="vXZ-lx-hvc" kind="modal" id="Vd4-nF-WVe"/>
@@ -264,12 +263,13 @@
                                     </barButtonItem>
                                 </items>
                                 <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="556" width="400" height="44"/>
-                                </variation>
                             </toolbar>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pru-i8-5LO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Setting" id="1oz-hP-fd1"/>
                                 </items>
@@ -279,6 +279,7 @@
                             </navigationBar>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VZf-LD-wiR">
                                 <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                                <color key="tintColor" red="0.2977066297" green="0.26913579789999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="129" y="121" width="143" height="31"/>
                                 </variation>
@@ -289,8 +290,12 @@
                             <constraint firstItem="abZ-54-lt6" firstAttribute="top" secondItem="kix-MS-kNd" secondAttribute="bottom" constant="43" id="LX3-qr-Ukn">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="kix-MS-kNd" secondAttribute="trailing" constant="16" id="SMV-zH-HxH"/>
-                            <constraint firstItem="kix-MS-kNd" firstAttribute="leading" secondItem="ics-jY-UJo" secondAttribute="leadingMargin" constant="16" id="tL8-mw-t21"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kix-MS-kNd" secondAttribute="trailing" constant="16" id="SMV-zH-HxH">
+                                <variation key="widthClass=compact" constant="-16"/>
+                            </constraint>
+                            <constraint firstItem="kix-MS-kNd" firstAttribute="leading" secondItem="ics-jY-UJo" secondAttribute="leadingMargin" constant="16" id="tL8-mw-t21">
+                                <variation key="widthClass=compact" constant="-16"/>
+                            </constraint>
                             <constraint firstAttribute="centerX" secondItem="kix-MS-kNd" secondAttribute="centerX" constant="-39" id="wRX-40-qKW">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
@@ -305,10 +310,10 @@
                                 <exclude reference="VZf-LD-wiR"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="LX3-qr-Ukn"/>
                                 <exclude reference="SMV-zH-HxH"/>
                                 <exclude reference="tL8-mw-t21"/>
                                 <exclude reference="wRX-40-qKW"/>
-                                <exclude reference="LX3-qr-Ukn"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -321,10 +326,10 @@
                                 <include reference="VZf-LD-wiR"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="LX3-qr-Ukn"/>
                                 <include reference="SMV-zH-HxH"/>
                                 <include reference="tL8-mw-t21"/>
                                 <include reference="wRX-40-qKW"/>
-                                <include reference="LX3-qr-Ukn"/>
                             </mask>
                         </variation>
                     </view>
@@ -339,6 +344,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Main.png" width="32" height="32"/>
         <image name="Rubbish.png" width="32" height="32"/>
         <image name="Setting.png" width="32" height="32"/>
     </resources>

@@ -21,14 +21,15 @@
     // Do any additional setup after loading the view.
     // set values of sliders
     
-    AVSpeechSynthesizer* speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
+    NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
     
+   // AVSpeechSynthesizer* speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
     self.rateSlider.minimumValue = AVSpeechUtteranceMinimumSpeechRate;
     self.rateSlider.maximumValue = AVSpeechUtteranceMaximumSpeechRate;
-    self.rateSlider.value = AVSpeechUtteranceDefaultSpeechRate;
+    self.rateSlider.value = [settingDefaults floatForKey:@"rate"];
     self.pitchSlider.minimumValue = 0.5;
     self.pitchSlider.maximumValue = 2.0;
-    self.pitchSlider.value = 1.0;
+    self.pitchSlider.value = [settingDefaults floatForKey:@"pitch"];
     
     [_rateSlider addTarget:self action:@selector(didValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_pitchSlider addTarget:self action:@selector(didValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -43,9 +44,13 @@
 
 - (void)didValueChanged:( UISlider *)slider
 {
+    
     NSLog(@"%f", _rateSlider.value);
     NSLog(@"%f", _pitchSlider.value);
-    
+    NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
+    [settingDefaults setFloat:_rateSlider.value forKey:@"rate"];
+    [settingDefaults setFloat:_pitchSlider.value forKey:@"pitch"];
+    [settingDefaults synchronize];
 }
 
 /*
@@ -59,10 +64,13 @@
 */
 
 - (IBAction)Return:(id)sender {
-    NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
-    [settingDefaults setInteger:_rateSlider.value forKey:@"rate"];
-    [settingDefaults setInteger:_pitchSlider.value forKey:@"pitch"];
-    [settingDefaults synchronize];
     
+//    NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
+//    [settingDefaults setFloat:_rateSlider.value forKey:@"rate"];
+//    [settingDefaults setFloat:_pitchSlider.value forKey:@"pitch"];
+//    [settingDefaults synchronize];
+//    NSLog(@"どやあああ");
+//    NSLog(@"%f", _rateSlider.value);
+//    NSLog(@"%f", _pitchSlider.value);
 }
 @end

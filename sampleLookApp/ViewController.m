@@ -44,6 +44,16 @@ static NSString* HistoryKey = @"History";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    CGFloat windowWitdh = frame.size.width;
+    if (windowWitdh <= 320) {
+        self.spacerItem.width = 200.0f;
+    } else {
+        self.spacerItem.width = 250.0f;
+    }
+    
     self.SearchBar.autocorrectionType = UITextAutocorrectionTypeYes;
     self.SearchBar.spellCheckingType = UITextSpellCheckingTypeYes;
     self.SearchBar.delegate = self;
@@ -57,8 +67,8 @@ static NSString* HistoryKey = @"History";
     
     NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
     
-    self.rate = [[settingDefaults stringForKey:@"rate"] integerValue];
-    self.pitchMultiplier = [[settingDefaults stringForKey:@"pitch"] integerValue];
+    self.rate = [settingDefaults floatForKey:@"rate"];
+    self.pitchMultiplier = [settingDefaults floatForKey:@"pitch"];
     
     NSLog(@"%f",_rate);
     // NSLog(@"%f",_pitchMultiplier);
@@ -187,9 +197,8 @@ static NSString* HistoryKey = @"History";
     AVSpeechSynthesizer* speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
     NSString* speakingText = word;
     AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:speakingText];
-    utterance.rate = 0.2;
-   // utterance.rate = rateSlider.value;
-   // utterance.pitchMultiplier = self.pitchSlider.value;
+    utterance.rate = self.rate;
+    utterance.pitchMultiplier = self.pitchMultiplier;
     AVSpeechSynthesisVoice* Voice = [AVSpeechSynthesisVoice voiceWithLanguage:self.language];
     // voiceをAVSpeechUtteranceに指定。
     utterance.voice =  Voice;
@@ -198,44 +207,8 @@ static NSString* HistoryKey = @"History";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchbar
 {
-    
-//    NSLog(@"%@", searchbar);
-//    NSLog(@"くそやろ");
-//    dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    dispatch_queue_t mainQueue = dispatch_get_main_queue();
-// 
-//    dispatch_async(globalQueue, ^{
-//        BOOL isMatched = [UIReferenceLibraryViewController
-//                      dictionaryHasDefinitionForTerm:searchbar.text];
-//        if (isMatched) {
-//            self.historyList = [NSDictionary dictionaryWithObjectsAndKeys:searchbar.text,@"text",_language,@"lang", nil];
-//    
-//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//            NSMutableArray *array = [NSMutableArray array];
-//            array = [[defaults arrayForKey:@"a"] mutableCopy];
-//    
-//            if(array == nil) {
-//                array = [NSMutableArray new];
-//            }
-//    
-//            [array addObject: self.historyList];
-//            [defaults setObject:array forKey:@"a"];
-//            [defaults synchronize];
-//    
-//            NSArray *aaa= [defaults arrayForKey:@"a"];
-//            NSArray *ccc = [[aaa reverseObjectEnumerator] allObjects];
-//            self.history = [[NSMutableOrderedSet alloc] initWithArray:ccc];
-//        }
-//        dispatch_async(mainQueue, ^{
-//            UIReferenceLibraryViewController *dictionary = [[UIReferenceLibraryViewController alloc] initWithTerm:searchbar.text];
-//            [self presentViewController:dictionary animated:YES completion:nil];
-    
+
             [searchbar resignFirstResponder];
-            
-//        });
-//    
-//    });
-//    
     
 }
 
