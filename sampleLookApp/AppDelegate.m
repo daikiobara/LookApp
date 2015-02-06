@@ -16,9 +16,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    
     NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
-    if (!settingDefaults) {
+    if (![settingDefaults floatForKey:@"rate"]) {
         [settingDefaults setFloat:0.2f forKey:@"rate"];
         [settingDefaults setFloat:1.0f forKey:@"pitch"];
         [settingDefaults synchronize];

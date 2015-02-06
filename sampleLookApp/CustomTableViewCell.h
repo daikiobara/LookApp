@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *CustomLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *SpeakerImg;
+@property (weak, nonatomic) IBOutlet UIImageView *TapSpeaker;
+
 
 @property (weak, nonatomic) NSArray *sampleArray;
 //- (void)setData:(NSString *)str;

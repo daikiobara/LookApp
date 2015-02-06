@@ -23,6 +23,8 @@
 @property (strong, nonatomic) NSDictionary *historyList;
 
 
+
+
 /* AVSpeechUtteranceのプロパティ*/
 //@property(nonatomic, retain) AVSpeechSynthesisVoice *voice;
 @property(nonatomic, readonly) NSString *speechString; //再生テキスト
@@ -34,25 +36,82 @@
 
 
 -(void)ManageHistoryByUserDefault;
+-(void)setIndicator;
+
 
 @end
 
 @implementation ViewController
-{
-    
-
-}
 
 
 static NSString* HistoryKey = @"History";
 
+- (BOOL)shouldAutorotate
+{
+    
+    float w = _indicator.frame.size.width;
+    float h = _indicator.frame.size.height;
+    float x = self.view.frame.size.width/2 - w/2;
+    float y = self.view.frame.size.height/2 - h/2;
+    _indicator.frame = CGRectMake(x, y, w, h);
+    _indicator.color = [UIColor redColor];
+    
+        CGRect rect2 = [[UIScreen mainScreen] applicationFrame];
+//    NSLog(@"====================");
+//    NSLog(@"%f", rect2.size.width);
+//    NSLog(@"====================");
+        self.spacerItem.width = rect2.size.width - 70;
+    
+    // 回転する場合YES, しない場合NO
+    if ([[UIDevice currentDevice].model isEqual: @"iPad"]) {
+        return YES;
+    }
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //[self.toolbar setBackgroundImage: [UIImage imageNamed:@"wood.jpg"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+
+    //[UIToolbar appearance].barTintColor = [UIColor blackColor];
+    //[UINavigationBar appearance].barTintColor = [UIColor blackColor];
+    // [[UINavigationBar appearance] setBackgroundColor:[UIColor blackColor]];
+    
+    
+//    [UISearchBar appearance].barTintColor = [UIColor blackColor];
+//    [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor blueColor]];
+//    _SearchBar.barTintColor = [UIColor blackColor];
+    
     self.SearchBar.autocorrectionType = UITextAutocorrectionTypeYes;
     self.SearchBar.spellCheckingType = UITextSpellCheckingTypeYes;
     self.SearchBar.delegate = self;
     [self ManageHistoryByUserDefault];
+    CGRect rect2 = [[UIScreen mainScreen] applicationFrame];
+    NSLog(@"rect2.size.width : %f , rect2.size.height : %f", rect2.size.width, rect2.size.height);
+    NSLog(@"%f",rect2.size.width);
+//    UIBarButtonItem * fixedSpacer = [[ UIBarButtonItem alloc ] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil ];
+//    fixedSpacer.width = 30;
     
+    self.spacerItem.width = rect2.size.width - 70;
+    self.settingBtnItem.width = 10;
+    self.trashBoxItem.width = 10;
+    
+    
+    
+//    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//    
+//    float w = _indicator.frame.size.width;
+//    float h = _indicator.frame.size.height;
+//    float x = self.view.frame.size.width/2 - w/2;
+//    float y = self.view.frame.size.height/2 - h/2;
+//    _indicator.frame = CGRectMake(x, y, w, h);
+//    _indicator.color = [UIColor redColor];
+    
+}
+
+
+-(void)setIndicator
+{
     self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
     float w = _indicator.frame.size.width;
@@ -66,11 +125,14 @@ static NSString* HistoryKey = @"History";
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self setIndicator];
     NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
     self.rate = [settingDefaults floatForKey:@"rate"];
     self.pitchMultiplier = [settingDefaults floatForKey:@"pitch"];
     self.searchResults = nil;
     self.matched = nil;
+    
+    [self.tableView reloadData];
 }
 
 -(void)ManageHistoryByUserDefault
@@ -146,22 +208,16 @@ static NSString* HistoryKey = @"History";
     
     // カスタムセルのラベルに値を設定
     cell.CustomLabel.text = text;
-    cell.SpeakerImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"speaker1" ofType:@"png"]];
+    cell.SpeakerImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Speaker2" ofType:@"png"]];
     UITapGestureRecognizer *tapp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappUnreadImage:)];
     [cell.SpeakerImg addGestureRecognizer:tapp];
     return cell;
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    searchBar = nil;
-    self.matched = nil;
-    self.searchResults = nil;
-    [self.tableView reloadData];
-    [searchBar resignFirstResponder];
-}
-
 
 -(void)tappUnreadImage:(UIGestureRecognizer *)gesture {
+    
+    
     NSString *word;
     // タップした位置（座標点）を取得します。
     CGPoint pos = [gesture locationInView:_tableView];
@@ -200,13 +256,27 @@ static NSString* HistoryKey = @"History";
     [speechSynthesizer speakUtterance:utterance];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchbar
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
 
-            [searchbar resignFirstResponder];
+            [searchBar resignFirstResponder];
     
 }
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+
+    self.matched = nil;
+    self.searchResults = nil;
+    [self.tableView reloadData];
+    searchBar.text = @"";
+    [_SearchBar resignFirstResponder];
+
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -244,6 +314,7 @@ static NSString* HistoryKey = @"History";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [_SearchBar resignFirstResponder];
     [self.view addSubview:_indicator];
     [_indicator startAnimating];
     _indicator.hidesWhenStopped = YES;
@@ -323,12 +394,43 @@ static NSString* HistoryKey = @"History";
 
 - (IBAction)Rubbish:(id)sender {
     
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"history"];
-    [defaults synchronize];
-    [self.history removeAllObjects];
-    [self.tableView reloadData];
+    if (self.history.count > 0) {
+        UIAlertView *alert = [[UIAlertView alloc] init];
+        alert.title = @"Delete";
+        alert.delegate = self;
+        [alert addButtonWithTitle:@"Cancele"];
+        [alert addButtonWithTitle:@"OK"];
+        [alert show];
+        
+    }
     
 }
+
+-(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            
+            break;
+            
+        case 1:
+            if (self.history) {
+//                SystemSoundID soundID;
+//                NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"cardboard"
+//                                                          withExtension:@"mp3"];
+//                
+//                AudioServicesCreateSystemSoundID ((__bridge CFURLRef)soundURL, &soundID); /*ご指摘ありがとうございました m(__)m */
+//                AudioServicesPlaySystemSound (soundID);
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults removeObjectForKey:@"history"];
+                [defaults synchronize];
+                [self.history removeAllObjects];
+                [self.tableView reloadData];
+            }
+            
+            break;
+    }
+    
+}
+
 @end
