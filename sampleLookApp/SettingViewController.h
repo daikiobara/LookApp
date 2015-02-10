@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
-
-@property (strong, nonatomic) IBOutlet UISlider *rateSlider;
-@property (strong, nonatomic) IBOutlet UISlider *pitchSlider;
+@property (weak, nonatomic) IBOutlet UIScrollView *scroller;
+@property (weak, nonatomic) IBOutlet UISlider *rateSlider;
+@property (weak, nonatomic) IBOutlet UISlider *pitchSlider;
 
 - (IBAction)Return:(id)sender;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UINavigationBar *SettingBar;
 
 @end

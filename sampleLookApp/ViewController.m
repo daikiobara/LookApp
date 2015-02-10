@@ -23,8 +23,6 @@
 @property (strong, nonatomic) NSDictionary *historyList;
 
 
-
-
 /* AVSpeechUtteranceのプロパティ*/
 //@property(nonatomic, retain) AVSpeechSynthesisVoice *voice;
 @property(nonatomic, readonly) NSString *speechString; //再生テキスト
@@ -33,6 +31,9 @@
 @property(nonatomic) float volume;
 @property(weak, nonatomic)NSString *ABC;
 @property(strong, nonatomic) UIActivityIndicatorView *indicator;
+@property(nonatomic) UIImage *NavImage;
+
+
 
 
 -(void)ManageHistoryByUserDefault;
@@ -69,18 +70,27 @@ static NSString* HistoryKey = @"History";
     return NO;
 }
 
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self.toolbar setBackgroundImage: [UIImage imageNamed:@"wood.jpg"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+    
+    
+    [UINavigationBar appearance].tintColor = [UIColor colorWithRed:0.3254901960784314 green:0.0784313725490196 blue:0.0784313725490196 alpha:1.0];
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:0.3254901960784314 green:0.0784313725490196 blue:0.0784313725490196 alpha:1.0]};
+    [UIToolbar appearance].tintColor =  [UIColor colorWithRed:0.3254901960784314 green:0.0784313725490196 blue:0.0784313725490196 alpha:1.0];
+    
+    self.NavImage = [UIImage imageNamed:@"mokume.png"];
+    UIImage *ToolImage = [UIImage imageNamed:@"mokume.png"];
+    self.SearchBar.backgroundImage = _NavImage;
+    
+   // [[self.SearchBar appearance] setBackgroundImage:_NavImage];
+    [[UINavigationBar appearance ]setBackgroundImage:_NavImage
+                                                  forBarMetrics:UIBarMetricsDefault];
+    [[UIToolbar appearance] setBackgroundImage:ToolImage
+                                       forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
 
-    //[UIToolbar appearance].barTintColor = [UIColor blackColor];
-    //[UINavigationBar appearance].barTintColor = [UIColor blackColor];
-    // [[UINavigationBar appearance] setBackgroundColor:[UIColor blackColor]];
-    
-    
-//    [UISearchBar appearance].barTintColor = [UIColor blackColor];
-//    [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor blueColor]];
-//    _SearchBar.barTintColor = [UIColor blackColor];
     
     self.SearchBar.autocorrectionType = UITextAutocorrectionTypeYes;
     self.SearchBar.spellCheckingType = UITextSpellCheckingTypeYes;
@@ -96,19 +106,13 @@ static NSString* HistoryKey = @"History";
     self.settingBtnItem.width = 10;
     self.trashBoxItem.width = 10;
     
-    
-    
-//    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-//    
-//    float w = _indicator.frame.size.width;
-//    float h = _indicator.frame.size.height;
-//    float x = self.view.frame.size.width/2 - w/2;
-//    float y = self.view.frame.size.height/2 - h/2;
-//    _indicator.frame = CGRectMake(x, y, w, h);
-//    _indicator.color = [UIColor redColor];
-    
 }
 
+//- (UIBarPosition)positionForBar:(id <UIBarPositioning>)bar
+//{
+//    
+//    return UIBarPositionTopAttached;
+//}
 
 -(void)setIndicator
 {
@@ -208,7 +212,7 @@ static NSString* HistoryKey = @"History";
     
     // カスタムセルのラベルに値を設定
     cell.CustomLabel.text = text;
-    cell.SpeakerImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Speaker2" ofType:@"png"]];
+    cell.SpeakerImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Speaker" ofType:@"png"]];
     UITapGestureRecognizer *tapp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappUnreadImage:)];
     [cell.SpeakerImg addGestureRecognizer:tapp];
     return cell;
@@ -258,8 +262,7 @@ static NSString* HistoryKey = @"History";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-
-            [searchBar resignFirstResponder];
+    [searchBar resignFirstResponder];
     
 }
 
@@ -285,29 +288,26 @@ static NSString* HistoryKey = @"History";
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     if( !_language ) _language = @"en_US";
-    
-            if ([searchText length]!=0) {
-                // インクリメンタル検索など
-                UITextChecker *_checker = [[UITextChecker alloc] init];
-                self.suggestionsA = [_checker guessesForWordRange:NSMakeRange(0, [searchText length])
+        if ([searchText length]!=0) {
+            // インクリメンタル検索など
+            UITextChecker *_checker = [[UITextChecker alloc] init];
+            self.suggestionsA = [_checker guessesForWordRange:NSMakeRange(0, [searchText length])
                                                inString:searchText
                                                language:_language];
-                self.suggestionsB = [_checker completionsForPartialWordRange:NSMakeRange(0, searchText.length)
+            self.suggestionsB = [_checker completionsForPartialWordRange:NSMakeRange(0, searchText.length)
                                                           inString:searchText language:_language];
-                self.prepareArray = [self.suggestionsA arrayByAddingObjectsFromArray:self.suggestionsB];
+            self.prepareArray = [self.suggestionsA arrayByAddingObjectsFromArray:self.suggestionsB];
             
-                self.searchResults = [[self.prepareArray reverseObjectEnumerator] allObjects];
+            self.searchResults = [[self.prepareArray reverseObjectEnumerator] allObjects];
             
-                UITextInputMode *textInput = [UITextInputMode currentInputMode];
+            UITextInputMode *textInput = [UITextInputMode currentInputMode];
             
-                self.searchResults = [[self.prepareArray reverseObjectEnumerator] allObjects];
-                NSString *primaryLanguage = textInput.primaryLanguage;
-                self.language = primaryLanguage;
-                
-                self.matched = searchText;
-    
-                [self.tableView reloadData];
-            }
+            self.searchResults = [[self.prepareArray reverseObjectEnumerator] allObjects];
+            NSString *primaryLanguage = textInput.primaryLanguage;
+            self.language = primaryLanguage;
+            self.matched = searchText;
+            [self.tableView reloadData];
+        }
     
 }
 
@@ -319,7 +319,7 @@ static NSString* HistoryKey = @"History";
     [_indicator startAnimating];
     _indicator.hidesWhenStopped = YES;
     
- NSString *word;
+    NSString *word;
     switch ([indexPath section]) {
         case 0: // match
             word = self.matched;
@@ -414,13 +414,6 @@ static NSString* HistoryKey = @"History";
             
         case 1:
             if (self.history) {
-//                SystemSoundID soundID;
-//                NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"cardboard"
-//                                                          withExtension:@"mp3"];
-//                
-//                AudioServicesCreateSystemSoundID ((__bridge CFURLRef)soundURL, &soundID); /*ご指摘ありがとうございました m(__)m */
-//                AudioServicesPlaySystemSound (soundID);
-                
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults removeObjectForKey:@"history"];
                 [defaults synchronize];
@@ -433,4 +426,45 @@ static NSString* HistoryKey = @"History";
     
 }
 
+- (IBAction)tapppp:(UIGestureRecognizer *)gesture {
+    
+    
+    NSString *word;
+    // タップした位置（座標点）を取得します。
+    CGPoint pos = [gesture locationInView:_tableView];
+    // 座標点から、tableViewのメソッドを使って、NSIndexPathを取得します。
+    NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:pos];
+    // indexPathを使って、TableView上のタップされた画像を持つCellを取得します。
+    switch ([indexPath section]) {
+        case 0:
+            if (self.matched) {
+                word = _matched;
+                break;
+            }
+        case 1:
+            if (self.searchResults != nil) {
+                word = _searchResults[indexPath.row];
+                break;
+            }else{
+                NSDictionary *htry = [self.history objectAtIndex:[indexPath row]];
+                word= [htry objectForKey:@"text"];
+                self.language = [htry objectForKey:@"lang"];
+                break;
+            }
+        default:
+            NSLog(@"error");
+            break;
+    }
+    
+    AVSpeechSynthesizer* speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
+    NSString* speakingText = word;
+    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:speakingText];
+    utterance.rate = self.rate;
+    utterance.pitchMultiplier = self.pitchMultiplier;
+    AVSpeechSynthesisVoice* Voice = [AVSpeechSynthesisVoice voiceWithLanguage:self.language];
+    // voiceをAVSpeechUtteranceに指定。
+    utterance.voice =  Voice;
+    [speechSynthesizer speakUtterance:utterance];
+    
+}
 @end

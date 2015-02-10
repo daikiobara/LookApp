@@ -16,10 +16,23 @@
 
 @implementation SettingViewController
 
+//- (BOOL)shouldAutorotate
+//{
+//    
+//    // 回転する場合YES, しない場合NO
+//    if ([[UIDevice currentDevice].model isEqual: @"iPad"]) {
+//        return YES;
+//    }
+//    return NO;
+//}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // set values of sliders
+    [self.scroller setScrollEnabled:YES ];
+    [self.scroller setContentSize:CGSizeMake(320,460)];
     
     NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -33,13 +46,27 @@
     
     [_rateSlider addTarget:self action:@selector(didValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_pitchSlider addTarget:self action:@selector(didValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.SettingBar setBackgroundImage:[UIImage imageNamed:@"mokume.png"] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
+    
+
+//    // ステータスバーの部分の背景色を木目に。。。
+//    UIView *view = [UIView new];
+//    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"mokume.png"]];
+//    [view setFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+//    [self.view addSubview:view];
 }
+
+//- (UIBarPosition)positionForBar:(id <UIBarPositioning>)bar
+//{
+//    return UIBarPositionTopAttached;
+//}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 - (void)didValueChanged:( UISlider *)slider
@@ -53,24 +80,7 @@
     [settingDefaults synchronize];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)Return:(id)sender {
     
-//    NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
-//    [settingDefaults setFloat:_rateSlider.value forKey:@"rate"];
-//    [settingDefaults setFloat:_pitchSlider.value forKey:@"pitch"];
-//    [settingDefaults synchronize];
-//    NSLog(@"どやあああ");
-//    NSLog(@"%f", _rateSlider.value);
-//    NSLog(@"%f", _pitchSlider.value);
 }
 @end

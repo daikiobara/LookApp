@@ -18,9 +18,10 @@
 		2A0D99851A6DEF6400BE72A0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99841A6DEF6400BE72A0 /* ViewController.m */; };
 		2A0D99C61A6F809000BE72A0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A0D99C51A6F809000BE72A0 /* AVFoundation.framework */; };
 		2A748EF91A7908A1000D7405 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A748EF81A7908A1000D7405 /* SettingViewController.m */; };
-		2AC87A791A8451B000951B1C /* Speaker2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AC87A781A8451B000951B1C /* Speaker2.png */; };
-		2AC87A7D1A8469A200951B1C /* steel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AC87A7C1A8469A200951B1C /* steel.jpg */; };
-		2AC87A7F1A846CFF00951B1C /* wood.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AC87A7E1A846CFF00951B1C /* wood.jpg */; };
+		2AE05E971A876B7B00D85DC6 /* mokume.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE05E961A876B7B00D85DC6 /* mokume.png */; };
+		2AE05E991A87712300D85DC6 /* Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE05E981A87712300D85DC6 /* Speaker.png */; };
+		2AE05E9D1A877E2600D85DC6 /* mokumeNav.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE05E9C1A877E2600D85DC6 /* mokumeNav.png */; };
+		2AE05EA11A88925500D85DC6 /* LookApp2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AE05EA01A88925500D85DC6 /* LookApp2.jpg */; };
 		2AE3613C1A7F229800798EE5 /* Setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE3613B1A7F229800798EE5 /* Setting.png */; };
 		2AE3613E1A7FBD6600798EE5 /* Rubbish.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE3613D1A7FBD6600798EE5 /* Rubbish.png */; };
 		2AE361401A80695600798EE5 /* Main.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE3613F1A80695600798EE5 /* Main.png */; };
@@ -56,9 +57,10 @@
 		2A0D99C51A6F809000BE72A0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2A748EF71A7908A1000D7405 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		2A748EF81A7908A1000D7405 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		2AC87A781A8451B000951B1C /* Speaker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Speaker2.png; sourceTree = "<group>"; };
-		2AC87A7C1A8469A200951B1C /* steel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = steel.jpg; sourceTree = "<group>"; };
-		2AC87A7E1A846CFF00951B1C /* wood.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wood.jpg; sourceTree = "<group>"; };
+		2AE05E961A876B7B00D85DC6 /* mokume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mokume.png; sourceTree = "<group>"; };
+		2AE05E981A87712300D85DC6 /* Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Speaker.png; sourceTree = "<group>"; };
+		2AE05E9C1A877E2600D85DC6 /* mokumeNav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mokumeNav.png; sourceTree = "<group>"; };
+		2AE05EA01A88925500D85DC6 /* LookApp2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LookApp2.jpg; sourceTree = "<group>"; };
 		2AE3613B1A7F229800798EE5 /* Setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Setting.png; sourceTree = "<group>"; };
 		2AE3613D1A7FBD6600798EE5 /* Rubbish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rubbish.png; sourceTree = "<group>"; };
 		2AE3613F1A80695600798EE5 /* Main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Main.png; sourceTree = "<group>"; };
@@ -129,10 +131,11 @@
 			children = (
 				2A0D99511A6CDBA700BE72A0 /* Info.plist */,
 				2AE3613B1A7F229800798EE5 /* Setting.png */,
-				2AC87A781A8451B000951B1C /* Speaker2.png */,
+				2AE05EA01A88925500D85DC6 /* LookApp2.jpg */,
 				2AE3613F1A80695600798EE5 /* Main.png */,
-				2AC87A7E1A846CFF00951B1C /* wood.jpg */,
-				2AC87A7C1A8469A200951B1C /* steel.jpg */,
+				2AE05E981A87712300D85DC6 /* Speaker.png */,
+				2AE05E9C1A877E2600D85DC6 /* mokumeNav.png */,
+				2AE05E961A876B7B00D85DC6 /* mokume.png */,
 				2AE3613D1A7FBD6600798EE5 /* Rubbish.png */,
 				2A0D99521A6CDBA700BE72A0 /* main.m */,
 			);
@@ -239,13 +242,14 @@
 			files = (
 				2AE3613E1A7FBD6600798EE5 /* Rubbish.png in Resources */,
 				2AE361401A80695600798EE5 /* Main.png in Resources */,
-				2AC87A791A8451B000951B1C /* Speaker2.png in Resources */,
 				2AE3613C1A7F229800798EE5 /* Setting.png in Resources */,
-				2AC87A7F1A846CFF00951B1C /* wood.jpg in Resources */,
+				2AE05EA11A88925500D85DC6 /* LookApp2.jpg in Resources */,
 				2A0D995F1A6CDBA700BE72A0 /* Main.storyboard in Resources */,
-				2AC87A7D1A8469A200951B1C /* steel.jpg in Resources */,
+				2AE05E9D1A877E2600D85DC6 /* mokumeNav.png in Resources */,
+				2AE05E971A876B7B00D85DC6 /* mokume.png in Resources */,
 				2A0D99641A6CDBA700BE72A0 /* LaunchScreen.xib in Resources */,
 				2A0D99611A6CDBA700BE72A0 /* Images.xcassets in Resources */,
+				2AE05E991A87712300D85DC6 /* Speaker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
