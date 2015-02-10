@@ -50,11 +50,11 @@
     [self.SettingBar setBackgroundImage:[UIImage imageNamed:@"mokume.png"] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
     
 
-//    // ステータスバーの部分の背景色を木目に。。。
-//    UIView *view = [UIView new];
-//    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"mokume.png"]];
-//    [view setFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
-//    [self.view addSubview:view];
+    // ステータスバーの部分の背景色を木目に。。。
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"mokume.png"]];
+    [view setFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+    [self.view addSubview:view];
 }
 
 //- (UIBarPosition)positionForBar:(id <UIBarPositioning>)bar

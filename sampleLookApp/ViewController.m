@@ -65,9 +65,9 @@ static NSString* HistoryKey = @"History";
     
     // 回転する場合YES, しない場合NO
     if ([[UIDevice currentDevice].model isEqual: @"iPad"]) {
-        return YES;
+        return NO;
     }
-    return NO;
+    return YES;
 }
 
 
@@ -76,6 +76,10 @@ static NSString* HistoryKey = @"History";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"mokume.png"]];
+    [view setFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+    [self.view addSubview:view];
     
     [UINavigationBar appearance].tintColor = [UIColor colorWithRed:0.3254901960784314 green:0.0784313725490196 blue:0.0784313725490196 alpha:1.0];
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:0.3254901960784314 green:0.0784313725490196 blue:0.0784313725490196 alpha:1.0]};
