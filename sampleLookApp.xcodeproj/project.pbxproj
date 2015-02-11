@@ -22,6 +22,8 @@
 		2AE05E991A87712300D85DC6 /* Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE05E981A87712300D85DC6 /* Speaker.png */; };
 		2AE05E9D1A877E2600D85DC6 /* mokumeNav.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE05E9C1A877E2600D85DC6 /* mokumeNav.png */; };
 		2AE05EA11A88925500D85DC6 /* LookApp2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AE05EA01A88925500D85DC6 /* LookApp2.jpg */; };
+		2AE05EA51A8A0BA800D85DC6 /* LookAppMain.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE05EA41A8A0BA800D85DC6 /* LookAppMain.png */; };
+		2AE05EA71A8A12AE00D85DC6 /* IpadMain.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE05EA61A8A12AE00D85DC6 /* IpadMain.png */; };
 		2AE3613C1A7F229800798EE5 /* Setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE3613B1A7F229800798EE5 /* Setting.png */; };
 		2AE3613E1A7FBD6600798EE5 /* Rubbish.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE3613D1A7FBD6600798EE5 /* Rubbish.png */; };
 		2AE361401A80695600798EE5 /* Main.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE3613F1A80695600798EE5 /* Main.png */; };
@@ -61,6 +63,8 @@
 		2AE05E981A87712300D85DC6 /* Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Speaker.png; sourceTree = "<group>"; };
 		2AE05E9C1A877E2600D85DC6 /* mokumeNav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mokumeNav.png; sourceTree = "<group>"; };
 		2AE05EA01A88925500D85DC6 /* LookApp2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LookApp2.jpg; sourceTree = "<group>"; };
+		2AE05EA41A8A0BA800D85DC6 /* LookAppMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LookAppMain.png; sourceTree = "<group>"; };
+		2AE05EA61A8A12AE00D85DC6 /* IpadMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IpadMain.png; sourceTree = "<group>"; };
 		2AE3613B1A7F229800798EE5 /* Setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Setting.png; sourceTree = "<group>"; };
 		2AE3613D1A7FBD6600798EE5 /* Rubbish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rubbish.png; sourceTree = "<group>"; };
 		2AE3613F1A80695600798EE5 /* Main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Main.png; sourceTree = "<group>"; };
@@ -131,8 +135,10 @@
 			children = (
 				2A0D99511A6CDBA700BE72A0 /* Info.plist */,
 				2AE3613B1A7F229800798EE5 /* Setting.png */,
+				2AE05EA61A8A12AE00D85DC6 /* IpadMain.png */,
 				2AE05EA01A88925500D85DC6 /* LookApp2.jpg */,
 				2AE3613F1A80695600798EE5 /* Main.png */,
+				2AE05EA41A8A0BA800D85DC6 /* LookAppMain.png */,
 				2AE05E981A87712300D85DC6 /* Speaker.png */,
 				2AE05E9C1A877E2600D85DC6 /* mokumeNav.png */,
 				2AE05E961A876B7B00D85DC6 /* mokume.png */,
@@ -241,10 +247,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AE3613E1A7FBD6600798EE5 /* Rubbish.png in Resources */,
+				2AE05EA51A8A0BA800D85DC6 /* LookAppMain.png in Resources */,
 				2AE361401A80695600798EE5 /* Main.png in Resources */,
 				2AE3613C1A7F229800798EE5 /* Setting.png in Resources */,
 				2AE05EA11A88925500D85DC6 /* LookApp2.jpg in Resources */,
 				2A0D995F1A6CDBA700BE72A0 /* Main.storyboard in Resources */,
+				2AE05EA71A8A12AE00D85DC6 /* IpadMain.png in Resources */,
 				2AE05E9D1A877E2600D85DC6 /* mokumeNav.png in Resources */,
 				2AE05E971A876B7B00D85DC6 /* mokume.png in Resources */,
 				2A0D99641A6CDBA700BE72A0 /* LaunchScreen.xib in Resources */,

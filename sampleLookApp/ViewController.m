@@ -22,59 +22,30 @@
 @property (strong, nonatomic) NSString *language;
 @property (strong, nonatomic) NSDictionary *historyList;
 
-
 /* AVSpeechUtteranceのプロパティ*/
-//@property(nonatomic, retain) AVSpeechSynthesisVoice *voice;
-@property(nonatomic, readonly) NSString *speechString; //再生テキスト
-@property(nonatomic) float rate;             // はやさ
-@property(nonatomic) float pitchMultiplier;  // 声のピッチ [0.5 - 2] Default = 1
+@property(nonatomic, readonly) NSString *speechString;
+@property(nonatomic) float rate;
+@property(nonatomic) float pitchMultiplier;
 @property(nonatomic) float volume;
-@property(weak, nonatomic)NSString *ABC;
 @property(strong, nonatomic) UIActivityIndicatorView *indicator;
 @property(nonatomic) UIImage *NavImage;
 
-
-
-
 -(void)ManageHistoryByUserDefault;
 -(void)setIndicator;
-
 
 @end
 
 @implementation ViewController
 
-
 static NSString* HistoryKey = @"History";
-
-- (BOOL)shouldAutorotate
-{
-    
-    float w = _indicator.frame.size.width;
-    float h = _indicator.frame.size.height;
-    float x = self.view.frame.size.width/2 - w/2;
-    float y = self.view.frame.size.height/2 - h/2;
-    _indicator.frame = CGRectMake(x, y, w, h);
-    _indicator.color = [UIColor redColor];
-    
-        CGRect rect2 = [[UIScreen mainScreen] applicationFrame];
-//    NSLog(@"====================");
-//    NSLog(@"%f", rect2.size.width);
-//    NSLog(@"====================");
-        self.spacerItem.width = rect2.size.width - 70;
-    
-    // 回転する場合YES, しない場合NO
-    if ([[UIDevice currentDevice].model isEqual: @"iPad"]) {
-        return NO;
-    }
-    return YES;
-}
-
-
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.NavImage = [UIImage imageNamed:@"mokume.png"];
+    UIImage *ToolImage = [UIImage imageNamed:@"mokume.png"];
+    self.SearchBar.backgroundImage = _NavImage;
     
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"mokume.png"]];
@@ -83,18 +54,13 @@ static NSString* HistoryKey = @"History";
     
     [UINavigationBar appearance].tintColor = [UIColor colorWithRed:0.3254901960784314 green:0.0784313725490196 blue:0.0784313725490196 alpha:1.0];
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:0.3254901960784314 green:0.0784313725490196 blue:0.0784313725490196 alpha:1.0]};
+
     [UIToolbar appearance].tintColor =  [UIColor colorWithRed:0.3254901960784314 green:0.0784313725490196 blue:0.0784313725490196 alpha:1.0];
     
-    self.NavImage = [UIImage imageNamed:@"mokume.png"];
-    UIImage *ToolImage = [UIImage imageNamed:@"mokume.png"];
-    self.SearchBar.backgroundImage = _NavImage;
-    
-   // [[self.SearchBar appearance] setBackgroundImage:_NavImage];
     [[UINavigationBar appearance ]setBackgroundImage:_NavImage
                                                   forBarMetrics:UIBarMetricsDefault];
     [[UIToolbar appearance] setBackgroundImage:ToolImage
                                        forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
-
     
     self.SearchBar.autocorrectionType = UITextAutocorrectionTypeYes;
     self.SearchBar.spellCheckingType = UITextSpellCheckingTypeYes;
@@ -103,20 +69,12 @@ static NSString* HistoryKey = @"History";
     CGRect rect2 = [[UIScreen mainScreen] applicationFrame];
     NSLog(@"rect2.size.width : %f , rect2.size.height : %f", rect2.size.width, rect2.size.height);
     NSLog(@"%f",rect2.size.width);
-//    UIBarButtonItem * fixedSpacer = [[ UIBarButtonItem alloc ] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil ];
-//    fixedSpacer.width = 30;
     
     self.spacerItem.width = rect2.size.width - 70;
     self.settingBtnItem.width = 10;
     self.trashBoxItem.width = 10;
     
 }
-
-//- (UIBarPosition)positionForBar:(id <UIBarPositioning>)bar
-//{
-//    
-//    return UIBarPositionTopAttached;
-//}
 
 -(void)setIndicator
 {
@@ -133,13 +91,13 @@ static NSString* HistoryKey = @"History";
 
 -(void)viewWillAppear:(BOOL)animated
 {
+ 
     [self setIndicator];
     NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
     self.rate = [settingDefaults floatForKey:@"rate"];
     self.pitchMultiplier = [settingDefaults floatForKey:@"pitch"];
     self.searchResults = nil;
     self.matched = nil;
-    
     [self.tableView reloadData];
 }
 
@@ -189,12 +147,11 @@ static NSString* HistoryKey = @"History";
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // カスタムセルを取得
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"
                                                                 forIndexPath:indexPath];
     NSString *text;
     switch ([indexPath section]) {
-        case 0: // matched
+        case 0:
              if (self.matched) {
                  text = self.matched;
                  break;
@@ -214,7 +171,6 @@ static NSString* HistoryKey = @"History";
             break;
      }
     
-    // カスタムセルのラベルに値を設定
     cell.CustomLabel.text = text;
     cell.SpeakerImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Speaker" ofType:@"png"]];
     UITapGestureRecognizer *tapp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappUnreadImage:)];
@@ -293,7 +249,6 @@ static NSString* HistoryKey = @"History";
 {
     if( !_language ) _language = @"en_US";
         if ([searchText length]!=0) {
-            // インクリメンタル検索など
             UITextChecker *_checker = [[UITextChecker alloc] init];
             self.suggestionsA = [_checker guessesForWordRange:NSMakeRange(0, [searchText length])
                                                inString:searchText
@@ -301,11 +256,8 @@ static NSString* HistoryKey = @"History";
             self.suggestionsB = [_checker completionsForPartialWordRange:NSMakeRange(0, searchText.length)
                                                           inString:searchText language:_language];
             self.prepareArray = [self.suggestionsA arrayByAddingObjectsFromArray:self.suggestionsB];
-            
             self.searchResults = [[self.prepareArray reverseObjectEnumerator] allObjects];
-            
             UITextInputMode *textInput = [UITextInputMode currentInputMode];
-            
             self.searchResults = [[self.prepareArray reverseObjectEnumerator] allObjects];
             NSString *primaryLanguage = textInput.primaryLanguage;
             self.language = primaryLanguage;

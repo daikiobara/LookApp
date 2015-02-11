@@ -16,27 +16,12 @@
 
 @implementation SettingViewController
 
-//- (BOOL)shouldAutorotate
-//{
-//    
-//    // 回転する場合YES, しない場合NO
-//    if ([[UIDevice currentDevice].model isEqual: @"iPad"]) {
-//        return YES;
-//    }
-//    return NO;
-//}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    // set values of sliders
     [self.scroller setScrollEnabled:YES ];
     [self.scroller setContentSize:CGSizeMake(320,460)];
     
     NSUserDefaults *settingDefaults = [NSUserDefaults standardUserDefaults];
-    
-   // AVSpeechSynthesizer* speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
     self.rateSlider.minimumValue = AVSpeechUtteranceMinimumSpeechRate;
     self.rateSlider.maximumValue = AVSpeechUtteranceMaximumSpeechRate;
     self.rateSlider.value = [settingDefaults floatForKey:@"rate"];
@@ -46,9 +31,6 @@
     
     [_rateSlider addTarget:self action:@selector(didValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_pitchSlider addTarget:self action:@selector(didValueChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    [self.SettingBar setBackgroundImage:[UIImage imageNamed:@"mokume.png"] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
-    
 
     // ステータスバーの部分の背景色を木目に。。。
     UIView *view = [UIView new];
@@ -57,15 +39,9 @@
     [self.view addSubview:view];
 }
 
-//- (UIBarPosition)positionForBar:(id <UIBarPositioning>)bar
-//{
-//    return UIBarPositionTopAttached;
-//}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

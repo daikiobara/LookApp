@@ -20,8 +20,6 @@
 @property (strong, nonatomic) NSMutableOrderedSet *history;
 - (IBAction)Rubbish:(id)sender;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-- (IBAction)tapppp:(id)sender;
-
 
 
 @end

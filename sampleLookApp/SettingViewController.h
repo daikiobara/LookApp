@@ -15,6 +15,5 @@
 
 - (IBAction)Return:(id)sender;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (weak, nonatomic) IBOutlet UINavigationBar *SettingBar;
 
 @end

@@ -52,7 +52,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="8DB54ABB-DB1C-4C35-B788-66DF6C6B06A2" translatesAutoresizingMaskIntoConstraints="NO" id="49y-6j-eUc">
+                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="8505B2E4-DFE3-4889-8F1B-7EF0C509DCFC" translatesAutoresizingMaskIntoConstraints="NO" id="49y-6j-eUc">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="tintColor" red="0.2977066297" green="0.26913579789999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
@@ -197,16 +197,16 @@
                                 <exclude reference="qw1-Oa-DaG"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="XMB-Fb-eaK"/>
-                                <exclude reference="Yh3-CE-Ja0"/>
-                                <exclude reference="eI9-Bb-uoQ"/>
-                                <exclude reference="xwb-Cs-Kco"/>
                                 <exclude reference="Brv-LX-fnq"/>
                                 <exclude reference="Jdg-s3-hbV"/>
                                 <exclude reference="wgG-bJ-qjE"/>
                                 <exclude reference="2WN-Pe-z1H"/>
                                 <exclude reference="UQx-kr-lzx"/>
                                 <exclude reference="lsf-YN-F8G"/>
+                                <exclude reference="Yh3-CE-Ja0"/>
+                                <exclude reference="eI9-Bb-uoQ"/>
+                                <exclude reference="xwb-Cs-Kco"/>
+                                <exclude reference="XMB-Fb-eaK"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -216,16 +216,16 @@
                                 <include reference="qw1-Oa-DaG"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="XMB-Fb-eaK"/>
-                                <include reference="Yh3-CE-Ja0"/>
-                                <include reference="eI9-Bb-uoQ"/>
-                                <include reference="xwb-Cs-Kco"/>
                                 <include reference="Brv-LX-fnq"/>
                                 <include reference="Jdg-s3-hbV"/>
                                 <include reference="wgG-bJ-qjE"/>
                                 <include reference="2WN-Pe-z1H"/>
                                 <include reference="UQx-kr-lzx"/>
                                 <include reference="lsf-YN-F8G"/>
+                                <include reference="Yh3-CE-Ja0"/>
+                                <include reference="eI9-Bb-uoQ"/>
+                                <include reference="xwb-Cs-Kco"/>
+                                <include reference="XMB-Fb-eaK"/>
                             </mask>
                         </variation>
                     </view>
@@ -600,7 +600,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="8DB54ABB-DB1C-4C35-B788-66DF6C6B06A2" width="100" height="60">
+        <image name="8505B2E4-DFE3-4889-8F1B-7EF0C509DCFC" width="100" height="60">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
